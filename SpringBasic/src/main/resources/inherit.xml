@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+xmlns部分指导入命名空间,冒号后面的是对明明空间的简写，如xmlns:aop="http://www.springframework.org/schema/aop"，后面就可以用aop:标签名来使用
+xsi:schemaLocation部分指明明空间指定的xsd规范文件按，这样后面配置的时候就可以根据规范文件给出智能提示。
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd "
+       default-lazy-init="false"
+>
+
+    <!--father若标记为abstract="true"，则不会创建该bean，但他仍然可以注入属性供子类继承，bean的抽象与否与原生类无关。-->
+    <bean id="father" class="inherit.Father" abstract="false">
+        <property name="fatherAttr1" value="father 1"/>
+        <property name="fatherAttr2" value="father 2"/>
+    </bean>
+
+    <!--还有一种方法可以处理公共属性，而不用原生类有继承关系，就是定义一个bean，注入公共的属性，标记为abstract，无类信息-->
+    <!--后面只需要把具体bean的parent指向该公共bean就行-->
+    <bean id="common" abstract="true">
+        <property name="commonAttr1" value="common 1"/>
+        <property name="commonAttr2" value="common 2"/>
+    </bean>
+
+    <bean id="son" class="inherit.Son" parent="father">
+        <property name="sonAttr1" value="son 1"/>
+        <property name="sonAttr2" value="son 2"/>
+    </bean>
+
+    <bean id="son1" class="inherit.Son" parent="common">
+        <property name="sonAttr1" value="son 1"/>
+        <property name="sonAttr2" value="son 2"/>
+    </bean>
+
+    <bean id="daughter" class="inherit.Daughter" parent="father">
+        <property name="daughterAttr1" value="daughter 1"/>
+        <property name="daughterAttr2" value="daughter 2"/>
+    </bean>
+
+    <bean id="daughter1" class="inherit.Daughter" parent="common">
+        <property name="daughterAttr1" value="daughter 1"/>
+        <property name="daughterAttr2" value="daughter 2"/>
+    </bean>
+
+</beans>

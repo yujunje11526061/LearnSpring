@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+xmlns部分指导入命名空间,冒号后面的是对明明空间的简写，如xmlns:aop="http://www.springframework.org/schema/aop"，后面就可以用aop:标签名来使用
+xsi:schemaLocation部分指明明空间指定的xsd规范文件按，这样后面配置的时候就可以根据规范文件给出智能提示。
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd "
+       default-lazy-init="true"
+       default-init-method="onInit"
+       default-destroy-method="onDestroy"
+>
+
+    <!--bean在创建后可能需要一些初始化工作，如连接数据库，销毁后可能需要一些收尾工作，如断开数据库连接等-->
+    <!--故需要定义初始化和销毁的方法，有两种方法-->
+    <!--1. 实现InitializingBean和DisposableBean接口-->
+    <!--2. 自定义初始化和销毁方法，然后在配置bean时指定相应方法，如下-->
+    <!--如果很多bean都定义了同名的初始化或销毁方法（逻辑可以不同），则可以在外层beans定义全局的方法-->
+    <!--也可以指定多个初始化和销毁方法，增加了灵活性，然后指定某个方法，其效力强于全局指定的方法-->
+    <!--通过实现接口的初始化的创建方法，则必然会被执行，且先于自定义方法被执行-->
+    <bean id="bean" class="initAndDestroy.Bean" init-method="onInit" destroy-method="onDestroy"/>
+    <bean id="bean2" class="initAndDestroy.Bean2" init-method="onInit2" destroy-method="onDestroy2"/>
+
+
+
+
+</beans>

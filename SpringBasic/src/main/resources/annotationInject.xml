@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+xmlns部分指导入命名空间,冒号后面的是对明明空间的简写，如xmlns:aop="http://www.springframework.org/schema/aop"，后面就可以用aop:标签名来使用
+xsi:schemaLocation部分指明明空间指定的xsd规范文件按，这样后面配置的时候就可以根据规范文件给出智能提示。
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd"
+>
+    <!--命名空间中记得导入包扫描支持，然后下面配置包扫描路径，开启包扫描-->
+    <!--也可以在配置类中加@ComponentScan注解-->
+    <context:component-scan base-package="annotationInject"/>
+
+</beans>

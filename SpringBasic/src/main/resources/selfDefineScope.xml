@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+xmlns部分指导入命名空间,冒号后面的是对明明空间的简写，如xmlns:aop="http://www.springframework.org/schema/aop"，后面就可以用aop:标签名来使用
+xsi:schemaLocation部分指明明空间指定的xsd规范文件按，这样后面配置的时候就可以根据规范文件给出智能提示。
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+    <!--自定义双例模式作用域，即当前上下文，该通过该bean只可能返回两个实例中的一个-->
+    <bean id="doubleton" class="actionScope.Doubleton"/>
+    <!--使用spring提供的线程单例作用域, 表示同一线程下通过bean只会返回一个实例-->
+    <bean id="simpleThreadScope" class="org.springframework.context.support.SimpleThreadScope"/>
+    <bean id="configurer" class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="doubleton" value-ref="doubleton"/>
+                <entry key="simpleThreadScope" value-ref="simpleThreadScope"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="son" class="actionScope.Son" scope="doubleton"/>
+    <bean id="son2" class="actionScope.Son" scope="simpleThreadScope"/>
+
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+     ">
+
+    <!--将一个类交由spring创建Bean并管理，主要参数为bean的ID，用于获取该bean，以及指定该bean所属的类-->
+    <!--只要该配置文件被导入，则里面的bean都会被构造出来。-->
+    <bean id="bean" class="com.Bean"/>
+
+    <!--bean的几种实例化方法-->
+    <!--1.通过类的构造方法-->
+    <bean id="bean1" class="instantiation.Bean1"/>
+    <!--2.通过静态工厂方法, 指定工厂及其工厂方法-->
+    <bean id="bean2" class="instantiation.BeanFactory" factory-method="getBean2"/>
+    <!--3.通过工厂实例方法，先创建工厂的bean，然后由factory-bean属性指定工厂的beanID，以及对应的实例方法，仍赋给factory-method属性-->
+    <bean id="beanFactory" class="instantiation.BeanFactory"/>
+    <bean id="bean3" class="instantiation.Bean3" factory-bean="beanFactory" factory-method="getBean3"/>
+
+    <!--给bean取别名, 可以用name属性指定多个别名，也可以用多个alias标签来指定，一个alias标签只能指定一个别名-->
+    <bean id="bean4" class="instantiation.Bean4" name="bean4_1, bean4_2"/>
+    <alias name="bean4" alias="bean4_3"/>
+    <alias name="bean4" alias="bean4_4"/>
+
+</beans>

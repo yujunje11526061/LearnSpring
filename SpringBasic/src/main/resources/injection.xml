@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+xmlns部分指导入命名空间,冒号后面的是对明明空间的简写，如xmlns:aop="http://www.springframework.org/schema/aop"，后面就可以用aop:标签名来使用
+xsi:schemaLocation部分指明明空间指定的xsd规范文件按，这样后面配置的时候就可以根据规范文件给出智能提示。
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd "
+>
+
+<!--spring的依赖注入精神，把所有的类依赖都通过配置来实现，由自身的IOC容器实现-->
+
+    <bean id="anotherBean1" class="injection.AnotherBean"/>
+    <bean id="anotherBean2" class="injection.AnotherBean"/>
+    <bean id="bean1" class="injection.Bean">
+        <!--通过构造方法注入属性-->
+        <!--index, name, type都是用来定位参数的，用index或name其实已经可以了定位，想阅读起来明确点可以三个都写-->
+        <!--只能用ref给引用或value直接给值或用子元素，就像下面容器注入一样， 三选一-->
+        <constructor-arg index="0" name="anotherBean1" type="injection.AnotherBean" ref="anotherBean1"/>
+        <constructor-arg index="1" name="string1" value="111111"/>
+
+        <!--通过getter和setter方法注入属性，ref还是value还是子元素同构造方法，只能三选一, 注入null只能用子元素-->
+        <property name="anotherBean2">
+            <null/>
+        </property>
+        <property name="string2" value="222222"/>
+    </bean>
+
+    <!--通过c命名空间和p明明空间简写以上注入方法，注入null还是得用子标签-->
+    <!--c对应构造函数，写法c:构造函数参数名-ref="注入的beanID" 或 c:构造函数参数名="值"-->
+    <!--p对应属性，代表用setter方法来设置，用法类似c-->
+    <bean id="bean2" class="injection.Bean"
+          c:anotherBean1-ref="anotherBean1" c:string1="3333333"
+          p:string2="4444444">
+        <property name="anotherBean2">
+            <null/>
+        </property>
+    </bean>
+
+    <!--容器类型属性的注入-->
+    <bean id="hashMap" class="java.util.HashMap"/>
+    <bean id="beanWithCollections" class="injection.BeanWithCollections">
+        <property name="map" ref="hashMap"/>
+        <property name="concurrentHashMap">
+            <map>
+                <entry key-ref="anotherBean1" value-ref="anotherBean1"/>
+                <entry key-ref="anotherBean2" value-ref="anotherBean2"/>
+            </map>
+        </property>
+        <property name="beanMap">
+            <map>
+                <entry key-ref="anotherBean1" value-ref="anotherBean1"/>
+                <entry key-ref="anotherBean2" value-ref="anotherBean2"/>
+            </map>
+        </property>
+        <property name="set">
+            <set>
+                <value>aaaaa</value>
+                <value>bbbbb</value>
+            </set>
+        </property>
+        <property name="beanSet">
+            <set>
+                <ref bean="anotherBean1"/>
+                <ref bean="anotherBean2"/>
+            </set>
+        </property>
+        <property name="list">
+            <list>
+                <value>aaaaa</value>
+                <value>bbbbb</value>
+            </list>
+        </property>
+        <property name="beanList">
+            <list>
+                <ref bean="anotherBean1"/>
+                <ref bean="anotherBean2"/>
+            </list>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="aaaaa">bbbbbb</prop>
+                <prop key="ccccc">llllll</prop>
+            </props>
+        </property>
+    </bean>
+
+
+</beans>

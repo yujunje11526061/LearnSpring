@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+xmlns部分指导入命名空间,冒号后面的是对明明空间的简写，如xmlns:aop="http://www.springframework.org/schema/aop"，后面就可以用aop:标签名来使用
+xsi:schemaLocation部分指明明空间指定的xsd规范文件按，这样后面配置的时候就可以根据规范文件给出智能提示。
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd "
+       default-lazy-init="false"
+>
+
+    <!--懒加载只对singleton作用域有效，有两种配置方法-->
+    <!--一种是直接在各个bean中单独配置，一种是在外层beans中设置属性default-lazy-init=, 同时配置时以单独配置为准-->
+    <!--外层default是非懒加载，内层default表示外层是什么就是什么，内层不设置其实就是default-->
+    <!--默认的scope就是singleton，默认非懒加载，即在上下文生成时就加载了bean，懒加载则在第一次使用时才加载-->
+    <bean id="bean" class="lazyLoading.Bean" lazy-init="false">
+        <constructor-arg index="0"  name="name" value="bean"/>
+    </bean>
+    <bean id="lazyBean" class="lazyLoading.Bean" lazy-init="true">
+        <constructor-arg index="0"  name="name" value="lazyBean"/>
+    </bean>
+    <bean id="defaultBean" class="lazyLoading.Bean" lazy-init="default">
+        <constructor-arg index="0"  name="name" value="defaultBean"/>
+    </bean>
+
+</beans>

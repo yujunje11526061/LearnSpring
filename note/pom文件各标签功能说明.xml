@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- 当前pom的版本 -->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!--模块坐标，包括组织名，项目名，模块名，版本。 有的地方也把一个模块说成一个项目-->
+  <groupId>反写的公司网址+项目名</groupId>
+  <artifactId>项目名+模块名</artifactId>
+  <!-- 项目版本
+	第一个0大版本号
+	第二个0分支版本号
+	第三个0小版本号
+	snapshot快照版本
+	alpha内部测试版本
+	beta公测版本
+	Release稳定版本，发行版本
+	GA正式发布版本
+   -->
+  <version>1.0-SNAPSHOT</version>
+
+  <!-- 打包类型，默认是jar, 其中pom类型一般是用来定义父级依赖的-->
+  <packaging>war</packaging>
+  <!-- 项目描述名 -->
+  <name>mmall Maven Webapp</name>
+  <!-- FIXME change it to the project's website，项目地址 -->
+  <url>http://www.example.com</url>
+  <!-- 项目描述，包括说明，开发人员，证书，组织等 -->
+  <description></description>
+  <developers></developers>
+  <licenses></licenses>
+  <organization></organization>
+
+  <!-- 定义一些属性，标签可像shell中的变量一样被引用，如${maven/complier.source} -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+
+  <!-- 列表标签用复数，其下面再定义每个成员，用单数标签 -->
+  <!--依赖列表，对于每个依赖，先在本地仓库找，找不到再去中央仓库找，仍找不到则报错。 关键要把依赖包的坐标写正确 -->
+  <!-- 可以自己生成jar包或去某处下载jar包然后放入本地仓库，也可以直接去中央仓库拷贝所需要jar包的坐标-->
+  <!-- 依赖冲突时，如按照两个路径传递依赖，涉及到同一个构建的不同版本，则按照短路优先的原则 -->
+  <dependencies> 
+    <dependency>
+      <!--坐标、作用域等  -->
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <!--maven共有三种classpath范围，分别对应编译，测试和运行
+	  并提供了6中scope值：compile,provided,runtime,test,system,import,分别对应一种或多种classpath范围，具体见官方文档
+      junit依赖只用于测试期间-->
+      <scope>test</scope>
+      <!-- 设置依赖是否可选 -->
+      <optional>true</optional>
+      <!-- 排除依赖传递的列表 -->
+      <exclusions>
+      	<exclusion></exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+
+  <!-- 依赖管理，主要定义在父模块中，用于被子模块继承。此时上面的packaging标签定义的打包类型应该为pom，并且在该模块中不应有代码，该模块仅仅用于抽取共用的依赖，并被继承，减少重复 -->
+  <dependencyManagement>
+  	<dependencies>
+  		<!-- 同上，可以放很多依赖，但是不会被引入到实际的依赖 -->
+  		<!-- 比如多个模块中都用到junit，则可以定义在父模块中，子模块去继承他即可 -->
+  	</dependencies>
+  </dependencyManagement>
+
+  <build> <!-- 与项目构建相关的配置-->
+    <finalName>mmall</finalName>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins> <!-- 插件列表，如下-->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <!--定义在子模块中，用于指定要继承的父模块 -->
+  <parent></parent>
+
+  <!-- 模块列表，用于指定多个模块，一起编译, 此标签主要是为了方便，此时当前模块仅仅起到一个容器的作用-->
+  <modules> 
+  	<module></module>
+  </modules>
+
+</project>

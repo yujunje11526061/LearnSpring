@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="DataBinding" />
         <module name="SpringBasic" />
+        <module name="SpringBoot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="DataBinding" target="11" />
       <module name="SpringBasic" target="11" />
+      <module name="SpringBoot" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

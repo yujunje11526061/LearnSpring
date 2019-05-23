@@ -1,3 +1,32 @@
+
+spring:
+  profiles:
+    active: prod
+
+
+---
+spring:
+  profiles: dev
+
+book:
+  name: 八八八
+  map: {k1: v1, k2: v2}
+  list:
+  - 2
+  - 3
+  - 4
+
+author:
+  name: YJJ
+  birthday: 1993
+
+
+---
+
+spring:
+  profiles: prod
+
+
 book:
   name: 啦啦啦
   map: {k1: v1, k2: v2}

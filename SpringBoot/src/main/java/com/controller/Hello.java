@@ -12,6 +12,6 @@ public class Hello {
     @RequestMapping("/hello")
     @ResponseBody
     public String hello(@RequestParam(defaultValue = "World") String name){
-        return "Hello "+name;
+        return "Hello~~~ "+name;
     }
 }

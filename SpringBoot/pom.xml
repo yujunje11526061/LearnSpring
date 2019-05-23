@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <!--父级依赖，指定当前springboot版本下各个依赖之间可兼容的版本，父依赖本身不会被导入
-    需要的依赖在下面导入，不需要指定版本，会自动从父级依赖里查找-->
+    需要的依赖在下面导入，不需要指定版本，会自动从父级依赖里查找。父工程必须打包成pom，这样才不会被导入-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -32,12 +32,23 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
         <!--导入配置文件处理器，以后编写配置就有提示了-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
 
     </dependencies>
 

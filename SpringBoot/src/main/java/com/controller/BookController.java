@@ -2,13 +2,14 @@ package com.controller;
 
 
 import com.user.Book;
+import com.user.Group;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.Serializable;
 
 
 @RequestMapping("/book")
@@ -25,5 +26,17 @@ public class BookController {
     @ResponseBody
     public String bookInfo(){
         return book.toString();
+    }
+
+    @RequestMapping(value = "json.do",method = RequestMethod.POST,consumes = "application/json",produces ="application/json")
+    @ResponseBody
+    public Serializable json(@RequestBody Group group) {
+        return group;
+    }
+
+    @RequestMapping("/err")
+    @ResponseBody
+    public String testErr(){
+        return 5/0+"";
     }
 }

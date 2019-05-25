@@ -40,10 +40,11 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
-        <!--mysql驱动-->
+        <!--mysql驱动, 和服务器版本一致-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <!--<version>5.1.6</version>-->
             <version>8.0.15</version>
         </dependency>
 

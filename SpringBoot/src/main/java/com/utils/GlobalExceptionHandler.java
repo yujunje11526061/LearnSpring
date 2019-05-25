@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Map<String, Object> handleException(Exception exception){
         Map<String, Object> map = new HashMap<>();
-        map.put("errCode", 5454545);
+        map.put("errCode", "全局异常");
         map.put("errMsg", exception.toString());
         return map;
     }

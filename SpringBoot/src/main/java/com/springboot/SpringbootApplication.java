@@ -16,7 +16,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 //以下注解是一个组合注解，包括@ComponentScan，@EnableAutoConfiguration， @Configuration
 @SpringBootApplication(scanBasePackages = {"com"})
 @EnableAsync // 开启异步功能
-@MapperScan(basePackages = {"com.mmall.dao"} )
 public class SpringbootApplication {
 
     public static void main(String[] args) {

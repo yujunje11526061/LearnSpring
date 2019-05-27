@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
+<!--配置逆向工程所需要的参数-->
 <generatorConfiguration>
     <!--导入属性配置文件-->
     <properties resource="application.properties"></properties>

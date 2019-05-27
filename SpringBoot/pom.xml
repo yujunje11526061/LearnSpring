@@ -68,6 +68,12 @@
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
 
+        <!--发送邮件相关-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <!--导入配置文件处理器，以后编写配置就有提示了-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

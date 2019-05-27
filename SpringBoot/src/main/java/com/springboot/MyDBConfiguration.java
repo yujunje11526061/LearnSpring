@@ -2,7 +2,6 @@ package com.springboot;
 
 
 import com.github.pagehelper.PageInterceptor;
-import com.utils.MyConverter;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -14,11 +13,10 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.convert.converter.Converter;
 
 import javax.sql.DataSource;
-import java.util.Date;
 import java.util.Properties;
+
 
 /**
  * Mybatis 的核心：
@@ -28,7 +26,6 @@ import java.util.Properties;
  *
  * 在spring中整合Mybatis，无需手动管理sqlSession的生成，连接和关闭，但是需要配置sqlSession工厂的Bean并交由Ioc容器管理，由该工厂Bean负责sqlSession的生成，连接和关闭
  */
-
 
 
 @Configuration

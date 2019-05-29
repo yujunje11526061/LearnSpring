@@ -84,7 +84,7 @@ public class MyDBConfiguration {
         properties.setProperty("params","count=countSql");
         interceptor.setProperties(properties);
 
-        // 插件的注册，需放在开启驼峰之前，否则由bug。
+        // 插件的注册，需放在开启驼峰之前，否则有bug。
         factoryBean.setPlugins(new Interceptor[] {interceptor});
 
         // configuration的修改，可选

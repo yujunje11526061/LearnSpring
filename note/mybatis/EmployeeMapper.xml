@@ -135,5 +135,5 @@ public Employee getEmpById(Integer id);
 		delete from tbl_employee where id=#{id}
 	</delete>
 	
-	
+	<!--<= 在xml中不能用，sql中要用到需要这样写，![CDATA[<=]]-->
 </mapper>

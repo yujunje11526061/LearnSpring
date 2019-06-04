@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="DataBinding" />
+        <module name="seckill" />
         <module name="SpringBasic" />
         <module name="SpringBoot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="DataBinding" target="11" />
+      <module name="seckill" target="8" />
       <module name="SpringBasic" target="11" />
       <module name="SpringBoot" target="11" />
     </bytecodeTargetLevel>

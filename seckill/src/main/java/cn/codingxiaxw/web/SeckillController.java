@@ -83,6 +83,7 @@ public class SeckillController
     public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") Long seckillId,
                                                    @PathVariable("md5") String md5,
                                                    @CookieValue(value = "userPhone",required = false) Long userPhone)
+            // 从cookie中获取userPhone，required为true则不存在时会报错，故改为false，手动处理相应逻辑
     {
         if (userPhone==null)
         {

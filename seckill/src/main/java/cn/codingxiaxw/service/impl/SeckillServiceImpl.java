@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
-import javax.annotation.Resource;
+//import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -121,14 +121,13 @@ public class SeckillServiceImpl implements SeckillService {
 
             }
 
-
+            //所有编译期异常转化为运行期异常，因为声明式事务只有碰到运行期异常才会回滚，但是我们逻辑上碰到执行失败也得回滚。
         } catch (SeckillCloseException e1) {
             throw e1;
         } catch (RepeatKillException e2) {
             throw e2;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            //所以编译期异常转化为运行期异常
             throw new SeckillException("seckill inner error :" + e.getMessage());
         }
 

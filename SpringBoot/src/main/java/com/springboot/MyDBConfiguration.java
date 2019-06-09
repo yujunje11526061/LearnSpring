@@ -93,6 +93,19 @@ public class MyDBConfiguration {
 
         return factoryBean.getObject(); // 获取其中的泛型对象SqlSessionFactory
 
+//        以factoryBean注册组件得方式，详见注解驱动开发视频教程
+//        public interface FactoryBean<T> {
+//            @Nullable
+//            T getObject() throws Exception;
+//
+//            @Nullable
+//            Class<?> getObjectType();
+//
+//            default boolean isSingleton() {
+//                return true;
+//            }
+//        }
+
     }
 
 

@@ -93,7 +93,8 @@ public class MyDBConfiguration {
 
         return factoryBean.getObject(); // 获取其中的泛型对象SqlSessionFactory
 
-//        以factoryBean注册组件得方式，详见注解驱动开发视频教程
+//        以factoryBean注册组件的方式，需要定义一个实现了以下接口的类，详见注解驱动开发视频教程。
+//        此处mybatis-spring整合已经帮我们实现了SqlSessionFactoryBean，并且还具有更丰富的方法
 //        public interface FactoryBean<T> {
 //            @Nullable
 //            T getObject() throws Exception;
